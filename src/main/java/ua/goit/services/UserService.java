@@ -2,7 +2,10 @@ package ua.goit.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import ua.goit.dto.UserDto;
 import ua.goit.model.User;
 import ua.goit.repositories.UserRepository;
@@ -15,6 +18,8 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -36,13 +41,20 @@ public class UserService {
     }
 
     public void create(UserDto userDto) {
-        repository.save(modelMapper.map(userDto, User.class));
+        User user = modelMapper.map(userDto, User.class);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        repository.save(user);
     }
 
     public void update(Long id, UserDto userDto) {
         repository.findById(id)
                 .map(user -> {
-                    user.setDescription(userDto.getDescription());
+                    if (StringUtils.hasText(userDto.getDescription())) {
+                        user.setDescription(userDto.getDescription());
+                    }
+                    if (StringUtils.hasText(userDto.getPassword())) {
+                        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+                    }
                     return user;
                 }).ifPresent(user -> {
                     repository.save(user);

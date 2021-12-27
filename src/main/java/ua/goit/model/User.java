@@ -14,7 +14,7 @@ public class User {
     private String name;
     private String description;
     private String password;
-    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY,
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Group> groups = new ArrayList<>();
     @OneToMany(mappedBy = "user")
