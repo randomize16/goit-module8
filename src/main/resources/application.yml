@@ -10,3 +10,8 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+
+myconfig:
+  welcome:
+    message: Hello user,
+    img: hello.img

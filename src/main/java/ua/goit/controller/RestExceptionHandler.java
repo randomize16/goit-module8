@@ -2,6 +2,7 @@ package ua.goit.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,9 +22,16 @@ public class RestExceptionHandler {
 
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            if (error instanceof FieldError) {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            } else if (error instanceof ObjectError) {
+                String fieldName = error.getObjectName();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            }
+
         });
         return errors;
     }

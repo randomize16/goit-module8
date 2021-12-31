@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class User {
     @Id
     @GeneratedValue(generator = "users_id_seq")
     private Long id;
+    @Column(name = "name", unique = true)
     private String name;
     private String description;
     private String password;
