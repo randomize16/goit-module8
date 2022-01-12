@@ -1,5 +1,6 @@
 package ua.goit.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 import ua.goit.model.User;
@@ -16,5 +17,6 @@ public class UserDto {
     private String name;
     private String description;
     @NotEmpty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }

@@ -14,10 +14,14 @@ public class LoggerAspect {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	@After("@annotation(LogMy)")
+	@Around("@annotation(ua.goit.annotations.LogMe)")
 	public Object loggMethodExecution(ProceedingJoinPoint joinPoint) throws Throwable {
-		LOGGER.info("Invoke");
-		return joinPoint.proceed();
+		long start = System.currentTimeMillis();
+		LOGGER.info("Start at " + start);
+		Object proceed = joinPoint.proceed();
+		long diff = System.currentTimeMillis() - start;
+		LOGGER.info("End at " + start + ", execution time " + (diff));
+		return proceed;
 	}
 
 }

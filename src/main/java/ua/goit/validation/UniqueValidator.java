@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Table;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -20,6 +21,11 @@ public class UniqueValidator implements ConstraintValidator<UniqueValidation, Ob
 	public void initialize(UniqueValidation constraintAnnotation) {
 		this.field = constraintAnnotation.field();
 		this.table = constraintAnnotation.table();
+		Class<?> model = constraintAnnotation.model();
+		Table tableAnnotation = model.getDeclaredAnnotation(Table.class);
+		if (tableAnnotation != null) {
+			this.table = tableAnnotation.name();
+		}
 	}
 
 	@Override
@@ -38,6 +44,11 @@ public class UniqueValidator implements ConstraintValidator<UniqueValidation, Ob
 					 " where " + this.field + " = :param");
 			query.setParameter("param", fieldValue);
 			Boolean isPresentInDb = (Boolean) query.getSingleResult();
+			if (isPresentInDb) {
+				context.buildConstraintViolationWithTemplate("This field not unique")
+						.addPropertyNode(this.field)
+						.addConstraintViolation();
+			}
 			return !isPresentInDb;
 		}
 

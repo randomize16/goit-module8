@@ -23,4 +23,5 @@ public @interface UniqueValidation {
 	Class<? extends Payload>[] payload() default {};
 	String table() default "";
 	String field() default "";
+	Class<?> model() default Object.class;
 }

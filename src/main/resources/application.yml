@@ -6,10 +6,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
 
 myconfig:
   welcome:

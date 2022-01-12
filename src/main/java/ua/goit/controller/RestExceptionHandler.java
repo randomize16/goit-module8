@@ -26,10 +26,6 @@ public class RestExceptionHandler {
                 String fieldName = ((FieldError) error).getField();
                 String errorMessage = error.getDefaultMessage();
                 errors.put(fieldName, errorMessage);
-            } else if (error instanceof ObjectError) {
-                String fieldName = error.getObjectName();
-                String errorMessage = error.getDefaultMessage();
-                errors.put(fieldName, errorMessage);
             }
 
         });

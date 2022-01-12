@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import ua.goit.annotations.LogMy;
+import ua.goit.annotations.LogMe;
 import ua.goit.dto.UserDto;
 import ua.goit.model.User;
 import ua.goit.repositories.UserRepository;
@@ -24,7 +24,7 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-    @LogMy
+    @LogMe
     public List<UserDto> getAll() {
         return repository.findAll()
                 .stream()
@@ -32,11 +32,12 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    @LogMe
     private UserDto convertToDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }
 
-    @LogMy
+    @LogMe
     public UserDto get(Long id) {
         return repository.findById(id)
                 .map(this::convertToDto)
