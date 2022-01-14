@@ -10,11 +10,12 @@ public class Category {
     private Long id;
     private String name;
     private String description;
-    @Column(name = "parent_id", insertable = false, updatable = false)
-    private Long parentId;
     @ManyToOne
-    @JoinColumn(name="parent_id", nullable=false)
+    @JoinColumn(name="parent_id")
     private Category parent;
+
+    @Column(name = "image")
+    private byte[] image;
 
     public Long getId() {
         return id;
@@ -40,14 +41,6 @@ public class Category {
         this.description = description;
     }
 
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     public Category getParent() {
         return parent;
     }
@@ -56,13 +49,20 @@ public class Category {
         this.parent = parent;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", parentId=" + parentId +
                 '}';
     }
 }

@@ -3,12 +3,14 @@ package ua.goit.services;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import ua.goit.dto.CategoryDto;
 import ua.goit.model.Category;
 import ua.goit.repositories.CategoryRepository;
 
-import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,12 +47,31 @@ public class CategoryService {
                 entity.setParent(parent);
             }
         } else {
-            entity.setParent( null);
+            entity.setParent(null);
         }
         repository.save(entity);
     }
 
     public Category get(Long id) {
         return repository.getById(id);
+    }
+
+    @Transactional
+    public void uploadImage(Long id, MultipartFile file) {
+        repository.findById(id)
+                .ifPresent(category -> {
+                    try {
+                        category.setImage(file.getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    repository.save(category);
+                });
+    }
+
+    public byte[] getImage(Long id) {
+        return repository.findById(id)
+                .map(Category::getImage)
+                .orElse(null);
     }
 }

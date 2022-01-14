@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(generator = "users_id_seq")
