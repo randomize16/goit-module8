@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org/">
+<title>Items page</title>
+<div th:replace="main.html :: header"></div>
+
+</head>
+<body>
+<div th:replace="main.html :: navigation"></div>
+
+<div class="container">
+    <div class="row">
+        <h2>Items page</h2>
+    </div>
+
+    <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <a href="/items/new" type="button" class="btn btn-primary">New</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${items}">
+                <td th:text="${item.id}"/>
+                <td th:text="${item.name}"/>
+                <td th:text="${item.description}"/>
+                <td th:text="${item.category.name}"/>
+                <td>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group me-2" role="group" aria-label="Second group">
+<!--                            <a href="/items/${item.id}" type="button" class="btn btn-warning">Edit</a>-->
+<!--                            <a href="/items?deleteId=${item.id}" type="button" class="btn btn-danger">Remove</a>-->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

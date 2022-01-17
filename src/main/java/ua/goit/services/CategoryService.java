@@ -2,6 +2,8 @@ package ua.goit.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -23,6 +25,7 @@ public class CategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Cacheable(value = "categories")
     public List<Category> getAll() {
         return repository.findAll();
     }
@@ -36,6 +39,11 @@ public class CategoryService {
 
     private CategoryDto convert(Category entity) {
         return modelMapper.map(entity, CategoryDto.class);
+    }
+
+    @CacheEvict(value = "categories", allEntries = true)
+    public void update(CategoryDto dto) {
+        System.out.println("asdasdasdasdasd");
     }
 
     @Transactional

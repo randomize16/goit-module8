@@ -1,15 +1,17 @@
 package ua.goit.dto;
 
 import lombok.Data;
-import lombok.ToString;
 import ua.goit.model.Category;
 import ua.goit.validation.IsUnique;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@IsUnique
 @Data
-@ToString
-@IsUnique(field = "name", model = Category.class)
-public class CategoryDto {
+public class ItemDto {
+    private String category;
+    private Long categoryId;
     private String name;
     private String description;
-    private String parentName;
 }

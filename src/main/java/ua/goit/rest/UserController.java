@@ -1,8 +1,9 @@
-package ua.goit.controller;
+package ua.goit.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.goit.dto.UserDto;
 import ua.goit.services.UserService;
@@ -34,7 +35,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
-                       @RequestBody UserDto userDto) {
+                       @RequestBody UserDto userDto,
+                       Model model) {
         userService.update(id, userDto);
     }
 

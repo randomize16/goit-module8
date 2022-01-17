@@ -1,0 +1,1 @@
+insert into users(name, description, password) values('asdasd','asdasd','asdasd');

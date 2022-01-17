@@ -1,7 +1,5 @@
 package ua.goit.validation;
 
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
@@ -16,7 +14,7 @@ import javax.validation.Payload;
 @Target({ElementType.TYPE })
 @Retention(RUNTIME)
 @Documented
-public @interface UniqueValidation {
+public @interface IsUnique {
 
 	String message() default "This object not unique";
 	Class<?>[] groups() default {};

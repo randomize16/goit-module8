@@ -7,8 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ua.goit.dto.CategoryDto;
 import ua.goit.model.Category;
 import ua.goit.services.CategoryService;
+
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/categories")
@@ -48,10 +53,8 @@ public class CategoryController {
     }
 
     @PostMapping("/{id}")
-    public String update(@PathVariable Long id,
-                         @RequestParam String name,
-                         @RequestParam String description,
-                         @RequestParam(required = false) String parent) {
+    public String update(@ModelAttribute @Valid CategoryDto dto) {
+        service.update(dto);
         return "redirect:/categories";
     }
 

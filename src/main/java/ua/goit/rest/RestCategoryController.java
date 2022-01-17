@@ -1,4 +1,4 @@
-package ua.goit.controller;
+package ua.goit.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

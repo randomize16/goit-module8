@@ -3,15 +3,14 @@ package ua.goit.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
-import ua.goit.model.User;
-import ua.goit.validation.UniqueValidation;
+import ua.goit.validation.IsUnique;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
 @ToString
-@UniqueValidation(table = "users", field = "name")
+@IsUnique(table = "users", field = "name")
 public class UserDto {
     @Size(min = 5)
     private String name;

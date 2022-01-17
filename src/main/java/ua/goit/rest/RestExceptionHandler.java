@@ -1,4 +1,4 @@
-package ua.goit.controller;
+package ua.goit.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueValidator implements ConstraintValidator<UniqueValidation, Object> {
+public class UniqueValidator implements ConstraintValidator<IsUnique, Object> {
 
 	private String table;
 	private String field;
@@ -18,7 +18,7 @@ public class UniqueValidator implements ConstraintValidator<UniqueValidation, Ob
 	private EntityManager em;
 
 	@Override
-	public void initialize(UniqueValidation constraintAnnotation) {
+	public void initialize(IsUnique constraintAnnotation) {
 		this.field = constraintAnnotation.field();
 		this.table = constraintAnnotation.table();
 		Class<?> model = constraintAnnotation.model();

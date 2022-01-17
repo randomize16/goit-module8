@@ -6,6 +6,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
 #  mvc:
 #    view:
 #      prefix: /WEB-INF/jsp/
