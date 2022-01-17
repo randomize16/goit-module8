@@ -1,8 +1,14 @@
+goit:
+  host: localhost
+  port: 5432
+  basename: postgres
+  user: postgres
+  password: password
 spring:
   datasource:
-    url: jdbc:postgresql://ec2-63-34-223-144.eu-west-1.compute.amazonaws.com:5432/d2um3gqcjta0r3
-    username: tqgrbjeemfsqmq
-    password: ce684cdd6ade3fe943fb38735ec3b7d8c27453f630349ca90eb5a095d3326df1
+    url: jdbc:postgresql://${goit.host}:${goit.port}/${goit.basename}
+    username: ${goit.user}
+    password: ${goit.password}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
