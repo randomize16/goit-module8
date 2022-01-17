@@ -1,1 +1,0 @@
-update users set password = '{bcrypt}$2a$10$PuTaj4elWmkLvChvLTG01Os2JE0H4uljTuIwpy6MJ4WT3bjFFdvpi', name = 'developer' where id = 1
