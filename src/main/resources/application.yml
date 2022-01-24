@@ -19,5 +19,5 @@ spring:
 
 myconfig:
   welcome:
-    message: Hahaha user,
+    message: Welcome user,
     img: hello.img
