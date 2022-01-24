@@ -16,10 +16,6 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: none
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/jsp/
-#      suffix: .jsp
 
 myconfig:
   welcome:
