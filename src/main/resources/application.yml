@@ -16,12 +16,8 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: none
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/jsp/
-#      suffix: .jsp
 
 myconfig:
   welcome:
-    message: Hi user,
+    message: Hahaha user,
     img: hello.img
