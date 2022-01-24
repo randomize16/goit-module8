@@ -1,0 +1,18 @@
+services:
+  web-app:
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - postgres
+    restart: always
+    environment:
+      - "goit.host=postgres"
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - "./mount:/var/lib/postgresql/data"
+    environment:
+      - "PGDATA=/var/lib/postgresql/data/pgdata"
+      - "POSTGRES_PASSWORD=password"
